@@ -1,0 +1,125 @@
+APPROVED TRANSACTION
+{
+	"accountInformation": {
+		"account": "0043",
+		"cardHolder": "UAT CAN/Test Card 01      ",
+		"cardPresentIndicator": "CARD_PRESENT",
+		"cardType": "VISA",
+		"debitAccountType": "NOT_SET",
+		"ebtType": "NOT_SET",
+		"entryMode": "4",
+		"expireDate": "1224",
+		"giftCardType": "NOT_SET"
+	},
+	"amountInformation": {
+		"amountDue": "0",
+		"approvedAmount": "1002",
+		"approvedCashBackAmount": "0",
+		"approvedMerchantFee": "0",
+		"approvedTaxAmount": "0",
+		"approvedTipAmount": "0",
+		"balance1": "12048",
+		"balance2": "2022",
+		"cashBackAmount": "0",
+		"merchantFee": "0",
+		"serviceFee": "0",
+		"taxAmount": "0",
+		"tipAmount": "0",
+		"transactionRemainingAmount": "0"
+	},
+	"avsInformation": {},
+	"cardInformation": {
+		"cardBin": "476173",
+		"hostProgramType": "NOT_SET",
+		"programType": "REGULAR_CARD"
+	},
+	"commercialInformation": {},
+	"fleetCard": {},
+	"hostCredentialInformation": {},
+	"hostInformation": {
+		"authorizationCode": "000000",
+		"hostReferenceNumber": "88888888",
+		"hostResponseCode": "0",
+		"hostResponseMessage": "DEMO APPROVED"
+	},
+	"motoECommerceInformation": {},
+	"multiMerchant": {},
+	"paymentEmvTag": {
+		"aid": "A0000000031010",
+		"appLabel": "VISA CREDIT",
+		"appPreferName": "Visa Credit",
+		"arc": "00",
+		"atc": "01A5",
+		"cid": "40",
+		"cvm": "1",
+		"iad": "06010A0364AC00",
+		"tc": "D5E31627572659A2",
+		"tsi": "E800",
+		"tvr": "0840008000"
+	},
+	"paymentTransactionInformation": {
+		"additionalResponseData": {},
+		"edcType": "NOT_SET",
+		"ewicBalance": [],
+		"ewicDetail": [],
+		"fpsReceipt": "NOT_SET",
+		"globalUid": "0820648934202501040001114644",
+		"pinStatusNumber": "NOT_SET",
+		"reversalStatus": "NOT_SET",
+		"signatureStatus": "NOT_SET",
+		"sn": "0820648934",
+		"userLanguageStatus": "ENGLISH_US"
+	},
+	"restaurant": {},
+	"torInformation": {
+		"originalTransactionType": ""
+	},
+	"traceInformation": {
+		"referenceNumber": "6",
+		"timeStamp": "20250104000111"
+	},
+	"transactionType": "01",
+	"vasInformation": {
+		"vasCode": "",
+		"vasData": []
+	},
+	"responseCode": "000000",
+	"responseMessage": "OK"
+}
+
+CANCELLED TRANSACTION
+
+{
+	"accountInformation": {
+		"entryMode": ""
+	},
+	"amountInformation": {},
+	"avsInformation": {},
+	"cardInformation": {},
+	"commercialInformation": {},
+	"fleetCard": {},
+	"hostCredentialInformation": {},
+	"hostInformation": {},
+	"motoECommerceInformation": {},
+	"multiMerchant": {},
+	"paymentEmvTag": {
+		"cvm": ""
+	},
+	"paymentTransactionInformation": {
+		"additionalResponseData": {},
+		"ewicBalance": [],
+		"ewicDetail": []
+	},
+	"restaurant": {},
+	"torInformation": {
+		"originalTransactionType": ""
+	},
+	"traceInformation": {},
+	"transactionType": "",
+	"vasInformation": {
+		"vasCode": "",
+		"vasData": []
+	},
+	"responseCode": "100002",
+	"responseMessage": "ABORTED"
+}

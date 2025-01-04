@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .container{
+                display: block;
+                width: auto;
+                margin: 20px;
+                align-items: center;
+                align-content: center;
+                text-align: center;
+                margin-top: 100px;
+            }
+            h1{
+                font-size: 50px;
+            }
+            .txt{
+                font-size: 50px;
+                font-weight: bold;
+                height:90px;
+                width: 70%;
+                padding: 10px;
+                margin-bottom: 20px;
+            }
+            .btn{
+                font-size: 100px;
+                font-weight: bold;
+                height:200px;
+                width:90%; 
+                margin-left: 50px; 
+                margin-right: 50px;
+                color: #ffffff;
+                background-color: #2d63c8;
+                border: 1px solid #2d63c8;
+                border-radius: 10px;
+                padding: 15px 50px;
+                cursor: pointer
+            }
+            #logInfo{
+                font-size: 30px;
+            }
+       </style>
+    </head>
+ <body>
+    <div class="container">
+        <h1>WEB PAGE PAYMENT DEMO</h1>
+        <input class="txt" type="number" id="txtAmount" value="2000" />
+        <button class="btn" onclick="startTransaction()">Pay</button>
+        <p id="logInfo"></p>
+    </div>
+   <script>
+     function startTransaction() {
+        var txtAmount = document.getElementById("txtAmount").value;
+        document.getElementById("logInfo").innerHTML = 'Transaction Started: $' + txtAmount;
+        window.ReactNativeWebView.postMessage(txtAmount);
+     }
+     document.addEventListener("message", function (event) {
+        document.getElementById("logInfo").innerHTML = event.data;
+     });
+   </script>
+ </body>
+</html>
