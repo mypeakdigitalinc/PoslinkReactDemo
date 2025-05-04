@@ -14,6 +14,14 @@
             h1{
                 font-size: 50px;
             }
+            .lbl{
+                font-size: 50px;
+                font-weight: bold;
+                height:90px;
+                width: 70%;
+                padding: 10px;
+                margin-bottom: 20px;
+            }
             .txt{
                 font-size: 50px;
                 font-weight: bold;
@@ -27,6 +35,8 @@
                 font-weight: bold;
                 height:200px;
                 width:90%; 
+                margin-top: 10px;
+                margin-bottom: 10px;
                 margin-left: 50px; 
                 margin-right: 50px;
                 color: #ffffff;
@@ -44,15 +54,40 @@
  <body>
     <div class="container">
         <h1>WEB PAGE PAYMENT DEMO</h1>
+        <span class="lbl">Amount</span>
         <input class="txt" type="number" id="txtAmount" value="2000" />
-        <button class="btn" onclick="startTransaction()">Pay</button>
+        <span class="lbl">TraceID</span>
+        <input class="txt" type="number" id="txtTraceId" value="0" />
+        <button class="btn" onclick="saleTransaction()">Sale</button>
+        <button class="btn" onclick="refundTransaction()">Refund</button>
+        <button class="btn" onclick="voidTransaction()">Void</button>
+        <button class="btn" onclick="preAuthTransaction()">Pre-Auth</button>
+        <button class="btn" onclick="postAuthTransaction()">Post-Auth</button>
         <p id="logInfo"></p>
     </div>
    <script>
-     function startTransaction() {
+        function saleTransaction(){
+            startTransaction('Sale');
+        }
+        function refundTransaction(){
+            startTransaction('Refund')
+        }
+        function voidTransaction(){
+            startTransaction('Void')
+        }
+        function preAuthTransaction(){
+            startTransaction('PreAuth')
+        }
+        function postAuthTransaction(){
+            startTransaction('PostAuth')
+        }
+
+     function startTransaction(transType) {
         var txtAmount = document.getElementById("txtAmount").value;
-        document.getElementById("logInfo").innerHTML = 'Transaction Started: $' + txtAmount;
-        window.ReactNativeWebView.postMessage(txtAmount);
+        var txtTraceId = document.getElementById("txtTraceId").value;
+        var payload = '{"transType":"' + transType + '","traceId":"' + txtTraceId + '","amount":"' + txtAmount + '"}';
+        document.getElementById("logInfo").innerHTML = payload;
+        window.ReactNativeWebView.postMessage(payload);
      }
      document.addEventListener("message", function (event) {
         document.getElementById("logInfo").innerHTML = event.data;

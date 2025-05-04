@@ -13,7 +13,30 @@ const WebViewScreen = ({navigation}:{navigation:any}) => {
         setLogInfo(data);
         await PoslinkModule?.showToast("Message Received: " + data);
         await PoslinkModule?.initTerminal();
-        const trans = await PoslinkModule?.startTransaction(data);
+        var payload = JSON.parse(data);
+        let trans = '';
+        if(payload.transType === 'Sale')
+        {
+            trans = await PoslinkModule?.startSaleTransaction(payload.amount);
+        }
+        else if(payload.transType === 'Refund')
+        {
+            trans = await PoslinkModule?.startRefundTransaction(payload.amount);
+        }
+        else if(payload.transType === 'Void')
+            {
+                trans = await PoslinkModule?.startVoidTransaction(payload.traceId,payload.amount);
+            }
+        else if(payload.transType === 'PreAuth')
+            {
+                trans = await PoslinkModule?.startPreAuthTransaction(payload.amount);
+            }
+        else if(payload.transType === 'PostAuth')
+            {
+                trans = await PoslinkModule?.startPostAuthTransaction(payload.traceId,payload.amount);
+            }            
+        //const trans = await PoslinkModule?.startTransaction(data);
+        //const trans = await PoslinkModule?.readCardData(data);
         sendMsgToWebPage(trans)
     }
     const sendMsgToWebPage = (msg:any) => {

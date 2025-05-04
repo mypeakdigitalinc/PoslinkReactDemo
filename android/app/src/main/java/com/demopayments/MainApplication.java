@@ -59,9 +59,9 @@ public class MainApplication extends Application implements ReactApplication {
       // If you opted-in for the New Architecture, we load the native entry point for this app.
       DefaultNewArchitectureEntryPoint.load();
     }
-      if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
-          ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
-      }
+      // if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+      //     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+      // }
 
   }
 }
