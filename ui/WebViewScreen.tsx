@@ -15,26 +15,33 @@ const WebViewScreen = ({navigation}:{navigation:any}) => {
         await PoslinkModule?.initTerminal();
         var payload = JSON.parse(data);
         let trans = '';
-        if(payload.transType === 'Sale')
-        {
-            trans = await PoslinkModule?.startSaleTransaction(payload.amount);
-        }
-        else if(payload.transType === 'Refund')
-        {
-            trans = await PoslinkModule?.startRefundTransaction(payload.amount);
-        }
-        else if(payload.transType === 'Void')
+        if(payload.edcType === 'Credit'){
+            if(payload.transType === 'Sale')
             {
-                trans = await PoslinkModule?.startVoidTransaction(payload.traceId,payload.amount);
+                trans = await PoslinkModule?.startSaleTransaction(payload.amount);
             }
-        else if(payload.transType === 'PreAuth')
+            else if(payload.transType === 'Refund')
             {
-                trans = await PoslinkModule?.startPreAuthTransaction(payload.amount);
+                trans = await PoslinkModule?.startRefundTransaction(payload.amount);
             }
-        else if(payload.transType === 'PostAuth')
+            else if(payload.transType === 'Void')
+                {
+                    trans = await PoslinkModule?.startVoidTransaction(payload.traceId,payload.amount);
+                }
+            else if(payload.transType === 'PreAuth')
+                {
+                    trans = await PoslinkModule?.startPreAuthTransaction(payload.amount);
+                }
+            else if(payload.transType === 'PostAuth')
+                {
+                    trans = await PoslinkModule?.startPostAuthTransaction(payload.traceId,payload.amount);
+                }    
+        } else if(payload.edcType === 'Gift'){
+            if(payload.transType === 'Sale')
             {
-                trans = await PoslinkModule?.startPostAuthTransaction(payload.traceId,payload.amount);
-            }            
+                trans = await PoslinkModule?.getGiftCardData();
+            }
+        }       
         //const trans = await PoslinkModule?.startTransaction(data);
         //const trans = await PoslinkModule?.readCardData(data);
         sendMsgToWebPage(trans)

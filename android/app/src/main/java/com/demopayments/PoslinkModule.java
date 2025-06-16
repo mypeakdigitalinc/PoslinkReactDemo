@@ -235,6 +235,32 @@ public class PoslinkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void getGiftCardData(Promise promise){
+        try{
+            CommunicationSetting setting = ParameterManager.getInstance(reactContext).getCommSetting();
+            Terminal terminal = POSLinkSemi.getInstance().getTerminal(reactContext, setting);
+            if (terminal != null) {
+                InputAccountRequest inputAccountRequest = new InputAccountRequest();
+                inputAccountRequest.setTimeout("600");
+                inputAccountRequest.setEdcType(EdcType.GIFT);
+                inputAccountRequest.setTransactionType(TransactionType.SALE);
+                inputAccountRequest.setMagneticSwipePinpadEnableFlag(PinpadEnableFlag.ALLOWED);
+                ExecutionResult<InputAccountResponse> executionResult =terminal.getManage().inputAccount(inputAccountRequest);
+
+                if (executionResult.isSuccessful() && executionResult.response() != null) {
+                    String payloadResp = PoslinkGson.getGson().toJson(executionResult.response());
+                    promise.resolve(payloadResp);
+                } else {
+                    promise.resolve("{\"error\": \"Unable to start transaction\"}");
+                }
+            }
+        }
+        catch (Exception e){
+            promise.reject("{\"error\": \"Start Transaction Error: "+ e.getMessage() +"\"}");
+        }
+    }
+
+    @ReactMethod
     public void readCardData(String strAmount, Promise promise){
         try{
             CommunicationSetting setting = ParameterManager.getInstance(reactContext).getCommSetting();

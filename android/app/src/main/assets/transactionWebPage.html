@@ -63,29 +63,34 @@
         <button class="btn" onclick="voidTransaction()">Void</button>
         <button class="btn" onclick="preAuthTransaction()">Pre-Auth</button>
         <button class="btn" onclick="postAuthTransaction()">Post-Auth</button>
+        <button class="btn" onclick="giftCardTransaction()">GiftCard</button>
+        <button class="btn" onclick="print()">Print</button>
         <p id="logInfo"></p>
     </div>
    <script>
         function saleTransaction(){
-            startTransaction('Sale');
+            startTransaction('Credit','Sale');
         }
         function refundTransaction(){
-            startTransaction('Refund')
+            startTransaction('Credit','Refund')
         }
         function voidTransaction(){
-            startTransaction('Void')
+            startTransaction('Credit','Void')
         }
         function preAuthTransaction(){
-            startTransaction('PreAuth')
+            startTransaction('Credit','PreAuth')
         }
-        function postAuthTransaction(){
-            startTransaction('PostAuth')
+        function giftCardTransaction(){
+            startTransaction('Gift','Sale')
+        }
+        function print(){
+            startTransaction('Print','')
         }
 
-     function startTransaction(transType) {
+     function startTransaction(edcType, transType) {
         var txtAmount = document.getElementById("txtAmount").value;
         var txtTraceId = document.getElementById("txtTraceId").value;
-        var payload = '{"transType":"' + transType + '","traceId":"' + txtTraceId + '","amount":"' + txtAmount + '"}';
+        var payload = '{"edcType":"'+ edcType +'", "transType":"' + transType + '","traceId":"' + txtTraceId + '","amount":"' + txtAmount + '"}';
         document.getElementById("logInfo").innerHTML = payload;
         window.ReactNativeWebView.postMessage(payload);
      }
